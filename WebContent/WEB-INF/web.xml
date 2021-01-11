@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  <display-name>web02</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <!-- 초기화 피라미터 설정 -->
+  <context-param>
+   <description>로깅 여부</description><!-- xml주석문기호 -->
+   <param-name>logEnabled</param-name><!-- 피라미터 이름 -->
+   <param-value>true</param-value><!-- 피라미터 값 지정 -->
+  </context-param>
+  
+  <context-param>
+   <description>디버깅 레벨</description>
+   <param-name>debugLevel</param-name>
+   <param-value>5</param-value>  
+  </context-param>
+  
+  <error-page>
+    <error-code>404</error-code>
+    <location>/error/error404.jsp</location>
+  </error-page>
+  
+  <!--
+  <error-page>
+    <error-code>500</error-code>
+    <location>/error/error500.jsp</location>
+  </error-page>
+  
+  <error-page>
+    <exception-type>java.lang.NullPointerException</exception-type>
+    <location>/error/errorNullPointer.jsp</location>
+  </error-page>
+  -->
+  
+  <!-- URL이  /view/로 시작하는 모든 jsp 파일의 앞과 뒤에 각각 파일을 삽입 -->
+  <jsp-config>
+   <jsp-property-group>
+     <url-pattern>/view/*</url-pattern><!-- 웹주소창에 실행되는 주소값 -->
+     <include-prelude>/common/variable.jspf</include-prelude><!-- 앞부분에 삽입될 파일 -->
+     <include-coda>/common/footer.jspf</include-coda><!-- 뒷부분에 삽입될 파일 --> 
+   </jsp-property-group>
+  </jsp-config>
+  
+  <!-- gcont 매핑주소에 해당하는 서블릿 설정 -->
+  <servlet>
+   <servlet-name>GCont05</servlet-name><!-- 서블릿 클래스명 -->
+   <servlet-class>test.GCont05</servlet-class><!-- 서블릿 풀패키지 경로->test패키지의
+    GCont05 서블릿 클래스명-->
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GCont05</servlet-name>
+    <url-pattern>/gcont</url-pattern><!-- /gcont가 주소창에 실행되는 주소값인 매핑주소 -->
+  </servlet-mapping>
+</web-app>
+
+
+
+
+
